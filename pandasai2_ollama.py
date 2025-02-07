@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 from pathlib import Path
+import matplotlib.pyplot as plt
 from langchain_community.llms import Ollama
 from pandasai import SmartDatalake, SmartDataframe
 import glob
