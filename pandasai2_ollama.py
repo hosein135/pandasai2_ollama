@@ -24,7 +24,7 @@ for file in csv_files:
     print(f"Processing file: {file}")
 
     # Read the current CSV file
-    data = pd.read_csv(file)
+    data = pd.read_csv(file, dtype=str)
 
     smart_data = SmartDataframe(data) # Create the SmartDataframe, but don't use it for the lake
     smart_dataframes.append(smart_data)
