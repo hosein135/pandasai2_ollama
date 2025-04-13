@@ -7,7 +7,7 @@ from pandasai import SmartDatalake, SmartDataframe
 import glob
 
 # Initialize the LLM model
-llm = Ollama(model="llama3.1")
+llm = Ollama(model="hf.co/bartowski/mistralai_Mistral-Small-3.1-24B-Instruct-2503-GGUF:Q3_K_S")
 
 dir_path = str(Path(os.path.dirname(__file__)))
 
@@ -25,7 +25,7 @@ for file in csv_files:
     print(f"Processing file: {file}")
 
     # Read the current CSV file
-    data = pd.read_csv(file, dtype=str)
+    data = pd.read_csv(file)
 
     smart_data = SmartDataframe(data) # Create the SmartDataframe, but don't use it for the lake
     smart_dataframes.append(smart_data)
@@ -34,7 +34,7 @@ for file in csv_files:
 
 # Create a SmartDatalake using the list of pandas DataFrames
 lake = SmartDatalake(dataframes, config={"llm": llm, "verbose": True})  # Corrected line
-response = lake.chat("calculate average of age column")
+response = lake.chat("bar plot the average of age")
 print(response)
 
 # Now you can use the smart_dataframes list for any SmartDataframe specific operations if needed.
